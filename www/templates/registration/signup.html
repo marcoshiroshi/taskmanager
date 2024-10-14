@@ -1,0 +1,170 @@
+{% load static %}
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Kaiadmin - Bootstrap 5 Admin Dashboard</title>
+    <meta
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+      name="viewport"
+    />
+    <link
+      rel="icon"
+      href="{% static 'assets/img/kaiadmin/favicon.ico' %}"
+      type="image/x-icon"
+    />
+
+    <!-- Fonts and icons -->
+    <script src="{% static 'assets/js/plugin/webfont/webfont.min.js' %}"></script>
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["{% static 'assets/css/fonts.min.css' %}"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/plugins.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/kaiadmin.min.css' %}" />
+
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link rel="stylesheet" href="{% static 'assets/css/demo.css' %}" />
+    <style>
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card card-secondary">
+                    <div class="card-body">
+                        <h3 class="mb-4 text-center">Crie uma conta</h3>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="row mt-3">
+                                <div class="col">   
+                                    <label class="text-light" for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon3"><span class="fas fa-envelope"></span></span>
+                                        {{ form.email }}
+                                    </div>
+                                    {% if form.errors.email %}<div class="text-danger">{{ form.errors.email.as_text }}</div>{% endif %}
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <label class="text-light" for="{{ form.first_name.id_for_label }}">{{ form.first_name.label }}</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon3"><span class="fas fa-user"></span></span>
+                                        {{ form.first_name }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <label class="text-light" for="{{ form.last_name.id_for_label }}">{{ form.last_name.label }}</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon3"><span class="fas fa-user"></span></span>
+                                        {{ form.last_name }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <label class="text-light" for="id_password1">Senha:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon3"><span class="fas fa-lock"></span></span>
+                                        <input type="password" name="password1" class="form-control" placeholder="Senha" autocomplete="new-password" required="" id="id_password1">
+                                    </div>
+                                    {% if form.errors.password1 %}<div class="text-danger">{{ form.errors.password1.as_text }}</div>{% endif %}
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <label class="text-light" for="id_password2">Confirmação de senha:</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-addon3"><span class="fas fa-lock"></span></span>
+                                        <input type="password" name="password2" class="form-control" placeholder="Confirmação de Senha" autocomplete="new-password" required="" id="id_password2">
+                                    </div>
+                                    {% if form.errors.password2 %}<div class="text-danger">{{ form.errors.password2.as_text }}</div>{% endif %}
+                                    <span class="helptext">Digite a mesma senha de antes, para verificação.</span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col">
+                                    <ul>
+                                        <li>Sua senha não pode ser muito semelhante às suas outras informações pessoais.</li>
+                                        <li>Sua senha deve conter pelo menos 8 caracteres.</li>
+                                        <li>Sua senha não pode ser uma senha comumente usada.</li>
+                                        <li>Sua senha não pode ser totalmente numérica.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                            </div>
+                        </form>
+                        <div class="d-flex justify-content-center align-items-center mt-4">
+                            <span class="font-weight-normal">
+                                Já possui uma conta?
+                                <a href="{% url 'login' %}" class="font-weight-bold text-light">Acesse aqui</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="{% static 'assets/js/core/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/core/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/core/bootstrap.min.js' %}"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="{% static 'assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+
+    <!-- Chart JS -->
+    <script src="{% static 'assets/js/plugin/chart.js/chart.min.js' %}"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="{% static 'assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
+
+    <!-- Chart Circle -->
+    <script src="{% static 'assets/js/plugin/chart-circle/circles.min.js' %}"></script>
+
+    <!-- Datatables -->
+    <script src="{% static 'assets/js/plugin/datatables/datatables.min.js' %}"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="{% static 'assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="{% static 'assets/js/plugin/jsvectormap/jsvectormap.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugin/jsvectormap/world.js' %}"></script>
+
+    <!-- Sweet Alert -->
+    <script src="{% static 'assets/js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="{% static 'assets/js/kaiadmin.min.js' %}"></script>
+
+</body>
+</html>

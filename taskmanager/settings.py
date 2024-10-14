@@ -43,10 +43,13 @@ INSTALLED_DJANGO = [
 
 APPS_PROJECT = [
     'framework',
+    'user',
+    'task'
 ]
 
 INSTALLED_APPS = INSTALLED_DJANGO + APPS_PROJECT
 
+AUTH_USER_MODEL = 'user.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -132,6 +135,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'statics/')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'www/statics/'),
 ]
+
+LOGIN_URL = 'signup'
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
