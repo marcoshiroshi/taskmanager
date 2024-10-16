@@ -1,2 +1,2 @@
 from .home import HomeView
-from .task import TaskListView
+from .task import TaskListView, TaskAddView

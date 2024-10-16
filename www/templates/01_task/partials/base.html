@@ -1,0 +1,36 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    
+    {% block header %}
+        {% include '01_task/partials/header.html' %}
+    {% endblock header%}
+
+  <body>
+    <div class="wrapper">
+      {% block sidebarvertical %}
+        {% include '01_task/partials/navbar-vertical.html' %}
+      {% endblock sidebarvertical %}
+
+        <div class="main-panel">
+        
+            {% block sidebarhorizontal %}
+                {% include '01_task/partials/navbar-horizontal.html' %}
+            {% endblock sidebarhorizontal %}
+
+            <div class="container">
+                <div class="page-inner">
+                    {% block main %}
+                    {% endblock main %}
+                </div>
+            </div>
+
+            {% block footer %}
+                {% include '01_task/partials/footer.html'%}
+            {% endblock footer%}
+            {% block extra_js %}
+            {% endblock extra_js %}
+        </div> 
+  </body>
+</html>

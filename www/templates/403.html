@@ -15,21 +15,21 @@
     <!-- Fonts and icons -->
     <script src="{% static 'assets/js/plugin/webfont/webfont.min.js' %}"></script>
     <script>
-      WebFont.load({
-        google: { families: ["Public Sans:300,400,500,600,700"] },
-        custom: {
-          families: [
-            "Font Awesome 5 Solid",
-            "Font Awesome 5 Regular",
-            "Font Awesome 5 Brands",
-            "simple-line-icons",
-          ],
-          urls: ["{% static 'assets/css/fonts.min.css' %}"],
-        },
-        active: function () {
-          sessionStorage.fonts = true;
-        },
-      });
+        WebFont.load({
+            google: { families: ["Public Sans:300,400,500,600,700"] },
+            custom: {
+            families: [
+                "Font Awesome 5 Solid",
+                "Font Awesome 5 Regular",
+                "Font Awesome 5 Brands",
+                "simple-line-icons",
+            ],
+            urls: ["{% static 'assets/css/fonts.min.css' %}"],
+            },
+            active: function () {
+            sessionStorage.fonts = true;
+            },
+        });
     </script>
 
     <!-- CSS Files -->
@@ -53,34 +53,18 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                <div class="card card-info">
-                    <div class="card-body">
-                        <h2 class="text-center">Task Manager</h2>
-                        <h3 class="mb-4 text-center">Login</h3>
-                        {% if form.errors %}
-                        <div class="border border-danger rounded text-danger bg-light p-3" style="font-size: small">
-                            <h6>ERRO(S) ENCONTRADO(S)</h6>
-                            {{ form.errors }}
+                <div class="card card-danger">
+                    <div class="card-body text-center">
+                        <h1>
+                            <i class="fas fa-ban large"></i> <br>
+                            ACESSO NÃO AUTORIZADO
+                        </h1>  
+                        <div class="text-center mb-1">
+                            Por favor, retorne à página inicial e tente novamente.
                         </div>
-                        {% endif %}
-                        <form method="POST">
-                            {% csrf_token %}
-                            <div class="mb-3">
-                                <label for="username" class="form-label text-light">Email</label>
-                                <input type="email" class="form-control" name="username" id="username" placeholder="Digite seu email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label text-light">Senha</label>
-                                <input type="password" class="form-control" name="password" id="password" placeholder="Digite sua senha" required>
-                            </div>
-                            <button type="submit" class="btn btn-success w-100">Enviar</button>
-                            <div class="d-flex justify-content-center align-items-center mt-4">
-                                <span class="font-weight-normal">
-                                    Não possui uma conta?
-                                    <a href="{% url 'signup' %}" class="font-weight-bold text-light">Acesse aqui</a>
-                                </span>
-                            </div>
-                        </form>
+                        <div class="text-center text-white text-uppercase mb-5">
+                            <a href="{% url 'home' %}" class="btn btn-light">Volte para a página de seleção de perfil <i class="feather icon-arrow-right"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>

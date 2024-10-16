@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from task.models import Task
+from task.forms import TaskForm
 
 
 class TaskListView(PermissionRequiredMixin, ListView):
@@ -13,28 +14,26 @@ class TaskListView(PermissionRequiredMixin, ListView):
     def get_queryset(self):
         return Task.objects.filter(user=self.request.user)
 
-'''
 
-
-class TaskAddView(PermissionRequiredMixin, CreateView):
+class TaskAddView(CreateView):
     model = Task
     form_class = TaskForm
-    template_name = '01_task/task.html'
-    success_url = reverse_lazy('task_meus_dados')
-    permission_required = 'task.view_task'
+    template_name = '01_task/task_add.html'
+    success_url = reverse_lazy('home')
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
-        self.object. = self.request.user.task_inst_user
-        if self.object.sede:
-            self.object..ck_Task = True
+        self.object.user = self.request.user
         self.object.save()
         return HttpResponseRedirect(self.success_url)
+    
+    def get_context_data(self, **kwargs):
+        return dict(
+            super().get_context_data(**kwargs),
+            tasks=Task.objects.all()
+        )
 
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs.update({"": self.request.user.task_inst_user})
-        return kwargs
+'''
 
 
 class TaskAttView(PermissionRequiredMixin, UpdateView):
