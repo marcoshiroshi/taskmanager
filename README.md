@@ -86,10 +86,15 @@ Após instalar as dependências, rode as migrações do banco de dados para conf
 python manage.py migrate
 ```
 ## 4. Inserir dados iniciais no banco
-Rode o script SQL para inserir dados adicionais no banco de dados SQLite:
+Rode o script SQL para inserir dados iniciais no banco de dados SQLite:
 
 ```
-sqlite3 db.sqlite3 < initial_sql.sql
+sqlite3 -echo db.sqlite3 < initial_sql.sql
+```
+
+Caso queira o sistema populado com dados adicionais:
+```
+sqlite3 -echo db.sqlite3 < base_dump.sql
 ```
 
 
