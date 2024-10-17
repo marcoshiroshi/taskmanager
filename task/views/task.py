@@ -21,41 +21,18 @@ class TaskAddView(CreateView):
     template_name = '01_task/task_add.html'
     success_url = reverse_lazy('home')
 
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.user = self.request.user
-        self.object.save()
-        return HttpResponseRedirect(self.success_url)
-    
     def get_context_data(self, **kwargs):
         return dict(
             super().get_context_data(**kwargs),
-            tasks=Task.objects.all()
+            tasks=Task.objects.all()[:5]
         )
 
-'''
 
-
-class TaskAttView(PermissionRequiredMixin, UpdateView):
+class TaskAttView(UpdateView):
     model = Task
     form_class = TaskForm
-    template_name = '01_task/task.html'
-    success_url = reverse_lazy('task_meus_dados')
-    permission_required = 'task.view_task'
-
-    def form_valid(self, form):
-        self.object = form.save(commit=False)
-        self.object.save()
-        if self.object.._Task.filter(sede=True).exists():
-                self.object..ck_Task = True
-        else:
-            self.object..ck_Task = False
-        return HttpResponseRedirect(self.success_url)
-
-    def get_form_kwargs(self):
-        kwargs = super().get_form_kwargs()
-        kwargs.update({"": self.request.user.task_inst_user})
-        return kwargs
+    template_name = '01_task/task_att.html'
+    success_url = reverse_lazy('home')
 
 
 class TaskDelView(PermissionRequiredMixin, DeleteView):
@@ -64,19 +41,11 @@ class TaskDelView(PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('task_meus_dados')
     permission_required = 'task.view_task'
 
-    def get_context_data(self, **kwargs):
-        return dict(
-            super().get_context_data(**kwargs),
-            form=TaskForm(self.request.POST or None, instance=self.get_object()),
-        )
-
-    def form_valid(self, form):
-        if self.object.sede:
-            self.object..ck_Task = False
-            self.object..save()
-        self.object.delete()
-        success_url = self.get_success_url()
-        return HttpResponseRedirect(success_url)
-
-'''
-        
+    #
+    # def form_valid(self, form):
+    #     if self.object.sede:
+    #         self.object..ck_Task = False
+    #         self.object..save()
+    #     self.object.delete()
+    #     success_url = self.get_success_url()
+    #     return HttpResponseRedirect(success_url)

@@ -1,0 +1,23 @@
+<div class="card-list">
+    {% for task in tasks %}
+    <div class="item-list">
+        <i class="fas fa-briefcase" style="font-size:20px"></i>    
+        <div class="info-user ms-3">
+        <div class="username">{{ task.user.get_full_name }} <br>
+            <small>{{ task.date_create|date:"d/m/y - H:i" }}</small>
+        </div>
+        <div class="status fs-6">{{ task.description }}</div>
+        </div>
+        <button class="btn btn-icon btn-primary btn-round btn-sm m-1">
+            <i class="fa fa-plus"></i>
+        </button>
+        <a href="{% url 'task_att' task.id %}" class="btn btn-icon btn-warning btn-round btn-sm">
+            <i class="fa fa-edit"></i>
+        </a>
+    </div>
+    {% empty %}
+        <h5 class="text-center text-uppercase">
+            nenhuma tarefa cadastrada
+        </h5>
+    {% endfor %}
+</div>

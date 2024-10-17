@@ -11,6 +11,14 @@
                     {% csrf_token %}
                     <div class="row mt-4">
                         <div class="col-md-12">
+                            <label for="{{ form.user.id_for_label }}">
+                                {{ form.user.label|upper }} <b class="text-danger">*</b>
+                            </label>
+                            {{ form.user }}
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-md-12">
                             <label for="{{ form.description.id_for_label }}">
                                 {{ form.description.label|upper }} <small>({{ form.description.help_text|upper }})</small> <b class="text-danger">*</b>
                             </label>
@@ -31,27 +39,9 @@
     <div class="col-md-6">
         <div class="card card-round">
             <div class="card-body">
-                <div class="card-title fw-mediumbold">Suas Tarefas</div>
+                <div class="card-title fw-mediumbold">Tarefas Cadastradas</div>
                 <hr>
-                <div class="card-list">
-                    {% for task in tasks %}
-                    <div class="item-list">
-                        <i class="fas fa-briefcase" style="font-size:20px"></i>    
-                        <div class="info-user ms-3">
-                        <div class="username">{{ task.user.get_full_name }} <br> {{ task.date_create|date:"d/m/y - H:i" }}</div>
-                        <div class="status">{{ task.description }}</div>
-                        </div>
-                        <button
-                        class="btn btn-icon btn-primary btn-round btn-xs">
-                        <i class="fa fa-plus"></i>
-                        </button>
-                    </div>
-                    {% empty %}
-                        <h5 class="text-center text-uppercase">
-                            nenhuma tarefa cadastrada
-                        </h5>
-                    {% endfor %}
-                </div>
+                {% include '01_task/partials/card-list-task.html' with tasks=tasks %}
             </div>
         </div>
     </div>
