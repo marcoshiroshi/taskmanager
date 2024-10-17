@@ -3,6 +3,7 @@ from django.views.generic import CreateView
 from django.contrib.auth import logout as auth_logout
 from django.urls import reverse_lazy
 from django.contrib.auth.views import LogoutView
+from django.contrib.auth.models import Group
 from django.contrib import messages
 from .forms import SignUpForm
 
@@ -16,6 +17,7 @@ class SignUpView(CreateView):
         self.object = form.save(commit=False)
         self.object.is_active = True
         self.object.save()
+        self.object.groups.add(Group.objects.get(name='USUARIO'))
         messages.success(self.request, 'Cadastro realizado com sucesso! Faça login com os seus dados.')
         return HttpResponseRedirect(self.get_success_url())
 

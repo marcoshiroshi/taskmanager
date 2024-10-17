@@ -11,19 +11,19 @@
                     {% csrf_token %}
                     <div class="row mt-4">
                         <div class="col-md-12">
-                            <span class="badge badge-info fs-5 w-100">CRIADO EM: {{ task.date_create|date:"d/m/y - H:i" }}</span>
+                            <span class="badge badge-info fs-5 w-100">CRIADA EM: {{ object.date_create|date:"d/m/y - H:i" }}</span>
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-md-12">
-                            <label for="{{ form.user.id_for_label }}">USUÁRIO <b class="text-danger">*</b></label>
+                            <label for="{{ form.user.id_for_label }}">{{ form.user.label|upper }} <b class="text-danger">*</b></label>
                             {{ form.user }}
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-md-12">
                             <label for="{{ form.description.id_for_label }}">
-                                {{ form.description.label|upper }} <small>({{ form.description.help_text|upper }})</small> <b class="text-danger">*</b>
+                                {{ form.description.label|upper }} <small>({{ form.description.help_text }})</small> <b class="text-danger">*</b>
                             </label>
                             {{ form.description }}
                         </div>
@@ -44,29 +44,7 @@
             <div class="card-body">
                 <div class="card-title fw-mediumbold">Registros da Tarefa</div>
                 <hr>
-                <div class="card-list">
-                    {% for registro in object.register_task.all %}
-                    <div class="item-list">
-                        <i class="fas fa-briefcase" style="font-size:20px"></i>
-                        <div class="info-user ms-3">
-                        <div class="username">{{ task.user.get_full_name }} <br>
-                            <small>{{ task.date_create|date:"d/m/y - H:i" }}</small>
-                        </div>
-                        <div class="status fs-6">{{ task.description }}</div>
-                        </div>
-                        <button class="btn btn-icon btn-primary btn-round btn-sm m-1">
-                            <i class="fa fa-plus"></i>
-                        </button>
-                        <a href="{% url 'task_att' task.id %}" class="btn btn-icon btn-warning btn-round btn-sm">
-                            <i class="fa fa-edit"></i>
-                        </a>
-                    </div>
-                    {% empty %}
-                        <h5 class="text-center text-uppercase">
-                            nenhum registro cadastrado
-                        </h5>
-                    {% endfor %}
-                </div>
+                {% include '01_task/partials/card-list-register.html' with registers=object.register_task.all %}
             </div>
         </div>
     </div>

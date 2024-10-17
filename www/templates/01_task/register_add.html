@@ -5,16 +5,17 @@
     <div class="col-md-6">
         <div class="card card-round">
             <div class="card-body">
-                <div class="card-title fw-mediumbold">Cadastrar Nova Tarefa</div>
+                <div class="card-title fw-mediumbold">Cadastrar Novo Registro</div>
                 <hr>
+                {% include '01_task/partials/card-task.html' with task=task %}
                 <form method="POST">
                     {% csrf_token %}
                     <div class="row mt-4">
                         <div class="col-md-12">
-                            <label for="{{ form.user.id_for_label }}">
-                                {{ form.user.label|upper }} <b class="text-danger">*</b>
+                            <label for="{{ form.minutes.id_for_label }}">
+                                {{ form.minutes.label|upper }} <small>({{ form.minutes.help_text }})</small> <b class="text-danger">*</b>
                             </label>
-                            {{ form.user }}
+                            {{ form.minutes }}
                         </div>
                     </div>
                     <div class="row mt-4">
@@ -28,22 +29,22 @@
                     <div class="row mt-4">
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-primary">
-                                <i class="fas fa-save"></i> Salvar Tarefa
+                                <i class="fas fa-save"></i> Salvar Registro
                             </button>
                         </div>
-                    </div>    
-                </form>    
+                    </div>
+                </form>
             </div>
         </div>
     </div>
     <div class="col-md-6">
         <div class="card card-round">
             <div class="card-body">
-                <div class="card-title fw-mediumbold">Tarefas Cadastradas</div>
+                <div class="card-title fw-mediumbold">Registros Cadastrados</div>
                 <hr>
-                {% include '01_task/partials/card-list-task.html' with tasks=tasks %}
+                {% include '01_task/partials/card-list-register.html' with registers=task.register_task.all %}
             </div>
         </div>
     </div>
-</div>   
+</div>
 {% endblock main %}

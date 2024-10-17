@@ -1,0 +1,23 @@
+<div class="card-list">
+    {% for register in registers %}
+    <div class="item-list">
+        <i class="fas fa-check-circle" style="font-size:20px"></i>
+        <div class="info-user ms-3">
+        <div class="username">{{ register.cast_time }} <br>
+            <small>{{ register.date_create|date:"d/m/y - H:i" }}</small>
+        </div>
+        <div class="status fs-6">{{ register.description }}</div>
+        </div>
+        <a href="{% url 'register_att' register.id %}" class="btn btn-icon btn-warning btn-round btn-sm m-1">
+            <i class="fa fa-edit"></i>
+        </a>
+        <a href="{% url 'register_del' register.id %}" class="btn btn-icon btn-danger btn-round btn-sm">
+            <i class="fa fa-trash"></i>
+        </a>
+    </div>
+    {% empty %}
+        <h5 class="text-center text-uppercase">
+            nenhum registro cadastrado
+        </h5>
+    {% endfor %}
+</div>

@@ -47,6 +47,7 @@ APPS_PROJECT = [
     'task'
 ]
 
+
 INSTALLED_APPS = INSTALLED_DJANGO + APPS_PROJECT
 
 AUTH_USER_MODEL = 'user.User'
@@ -136,9 +137,9 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'www/statics/'),
 ]
 
-LOGIN_URL = 'signup'
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
-LOGOUT_REDIRECT_URL = 'signup'
+LOGOUT_REDIRECT_URL = 'login'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

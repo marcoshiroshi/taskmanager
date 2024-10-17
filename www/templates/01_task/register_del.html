@@ -5,20 +5,27 @@
     <div class="col-md-6">
         <div class="card card-round">
             <div class="card-body">
-                <div class="card-title fw-mediumbold">Excluir Tarefa</div>
+                <div class="card-title fw-mediumbold">Excluir Registro</div>
+                <hr>
+                {% include '01_task/partials/card-task.html' with task=object.task %}
                 <hr>
                 <p class="text-danger text-center border border-danger rounded">
-                    Atenção! Esta ação excluirá a tarefa e todos os registros a ela relacionados.
+                    Atenção! Esta ação excluirá somente o registro atual.
                 </p>
                 <div class="row mt-4">
                     <div class="col-md-12">
-                        <span class="badge badge-info fs-5 w-100">CRIADA EM: {{ object.date_create|date:"d/m/y - H:i" }}</span>
+                        <span class="badge badge-success fs-5 w-100">CRIADO EM: {{ object.date_create|date:"d/m/y - H:i" }}</span>
                     </div>
                 </div>
                 <div class="row mt-4">
                     <div class="col-md-12">
-                        <label for="id_user">USUÁRIO</label>
-                        <input type="text" id="id_user" class="form-control" value="{{ object.user }}" disabled="">
+                        <span class="badge badge-success fs-5 w-100">TEMPO TOTAL: {{ object.cast_time }}</span>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+                        <label for="id_user">DURAÇÃO</label>
+                        <input type="text" id="id_user" class="form-control" value="{{ object.minutes }}" disabled="">
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -32,7 +39,7 @@
                     <div class="row mt-4">
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-danger">
-                                <i class="fas fa-trash"></i> Excluir Tarefa
+                                <i class="fas fa-trash"></i> Excluir Registro
                             </button>
                         </div>
                     </div>
@@ -43,12 +50,12 @@
     <div class="col-md-6">
         <div class="card card-round">
             <div class="card-body">
-                <div class="card-title fw-mediumbold">Registros da Tarefa</div>
+                <div class="card-title fw-mediumbold">Registros Cadastrados</div>
                 <hr>
                 <p class="text-danger text-center border border-danger rounded">
-                    Atenção! Esta ação excluirá a tarefa e todos os registros a ela relacionados.
+                    Atenção! Esta ação excluirá somente o registro atual.
                 </p>
-                {% include '01_task/partials/card-list-register.html' with registers=object.register_task.all %}
+                {% include '01_task/partials/card-list-register.html' with registers=object.task.register_task.all %}
             </div>
         </div>
     </div>

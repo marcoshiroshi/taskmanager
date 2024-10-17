@@ -8,11 +8,14 @@
         </div>
         <div class="status fs-6">{{ task.description }}</div>
         </div>
-        <button class="btn btn-icon btn-primary btn-round btn-sm m-1">
+        <a href="{% url 'register_add' task.id %}" class="btn btn-icon btn-primary btn-round btn-sm">
             <i class="fa fa-plus"></i>
-        </button>
-        <a href="{% url 'task_att' task.id %}" class="btn btn-icon btn-warning btn-round btn-sm">
+        </a>
+        <a href="{% url 'task_att' task.id %}" class="btn btn-icon btn-warning btn-round btn-sm m-1">
             <i class="fa fa-edit"></i>
+        </a>
+        <a href="{% url 'task_del' task.id %}" class="btn btn-icon btn-danger btn-round btn-sm">
+            <i class="fa fa-trash"></i>
         </a>
     </div>
     {% empty %}

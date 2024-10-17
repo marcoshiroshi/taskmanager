@@ -4,34 +4,37 @@
 
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">LISTA DE TAREFAS</h4>
+            <h4 class="card-title">LISTA DE REGISTROS</h4>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table id="multi-filter-select" class="display table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th>USUÁRIO</th>
+                            <th>TAREFA</th>
+                            <th>RESPONSÁVEL</th>
+                            <th>DURAÇÃO</th>
                             <th>DATA DE CRIAÇÃO</th>
                             <th>DESCRIÇÃO</th>
-                            <th>REGISTROS</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>USUÁRIO</th>
+                            <th>TAREFA</th>
+                            <th>RESPONSÁVEL</th>
+                            <th>DURAÇÃO</th>
                             <th>DATA DE CRIAÇÃO</th>
                             <th>DESCRIÇÃO</th>
-                            <th>REGISTROS</th>
                         </tr>
                     </tfoot>
                     <tbody>
-                        {% for task in object_list %}
+                        {% for register in object_list %}
                         <tr>
-                            <td>{{ task.user }}</td>
-                            <td>{{ task.date_create }}</td>
-                            <td>{{ task.description }}</td>
-                            <td>{{ task.register_task.count }}</td>
+                            <td>{{ register.task.description }}</td>
+                            <td>{{ register.task.user }}</td>
+                            <td>{{ register.minutes }}</td>
+                            <td>{{ register.date_create }}</td>
+                            <td>{{ register.description }}</td>
                         </tr>
                         {% endfor %}
                     </tbody>

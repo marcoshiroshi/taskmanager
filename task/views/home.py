@@ -3,12 +3,13 @@ from django.views.generic import ListView, TemplateView
 from user.models import User
 from task.models import Task, Register
 
-class HomeView(TemplateView):
+
+class HomeView(PermissionRequiredMixin, TemplateView):
     template_name = '01_task/home.html'
-    #permission_required = 'task.view_task'
+    permission_required = 'task.view_task'
 
     def get_context_data(self, **kwargs):
-        tasks=Task.objects.all()
+        tasks = Task.objects.all()
         return dict(
             super().get_context_data(**kwargs),
             # exemplos de querysets
